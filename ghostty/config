@@ -1,0 +1,24 @@
+# Reload the config with Ctrl+Shift+,
+
+# theme = "catppuccin-latte"
+# theme = "catppuccin-mocha"
+theme = "kanagawabones"
+# theme = "GruvboxLight"
+# theme = "Kanagawa Dragon"
+
+
+font-family = "FantasqueSansM Nerd Font Mono"
+# font-family = "Victor Mono"
+font-size = 10
+
+# cursor-style = block
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 0.3
+confirm-close-surface = false
+
+window-decoration = false
+background-opacity = 0.95
+background-blur-radius = 20
+window-padding-x = 7
+window-padding-y = 7
+window-padding-balance = true
