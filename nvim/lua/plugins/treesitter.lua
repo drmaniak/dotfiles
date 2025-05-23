@@ -71,7 +71,7 @@ return {
 					},
 					move = {
 						enable = true,
-						set_jumps = true, -- whether to set jumps in the jumplist
+						set_jumps = true, -- Whether to set jumps in the jumplist
 						goto_next_start = {
 							["]m"] = { query = "@function.outer", desc = "Next function start" },
 							["]]"] = { query = "@class.outer", desc = "Next class start" },
@@ -106,6 +106,21 @@ return {
 						-- goto_previous = {
 						-- 	["[d"] = "@conditional.outer",
 						-- },
+					},
+					swap = {
+						enable = true,
+						swap_next = {
+							["<leader>sn"] = {
+								query = "@parameter.inner",
+								desc = "Swap current parameter for next",
+							},
+						},
+						swap_previous = {
+							["<leader>sp"] = {
+								query = "@parameter.inner",
+								desc = "Swap current parameter for previous",
+							},
+						},
 					},
 				},
 			})
