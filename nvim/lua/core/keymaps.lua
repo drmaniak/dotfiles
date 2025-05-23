@@ -66,7 +66,7 @@ map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, "Repeat t search", { 
 map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, "Repeat T search", { expr = true })
 
 -- Oil --
-map("n", "<leader>o", cmd("Oil"))
+map("n", "<leader>o", cmd("Oil --float"))
 
 -- Neo-Tree --
 map("n", "<C-n>", ":Neotree toggle filesystem reveal left<CR>", "Neo-Tree Toggle")
