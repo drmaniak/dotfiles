@@ -6,6 +6,6 @@ return {
 	},
 
 	config = function()
-		require("nvim-navic").setup()
+		require("nvim-navic").setup({})
 	end,
 }
