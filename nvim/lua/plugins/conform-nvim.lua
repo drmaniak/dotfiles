@@ -1,47 +1,56 @@
 return {
 	"stevearc/conform.nvim",
 	event = { "BufReadPre", "BufNewFile" },
-	opts = {},
+	opts = {
+		-- Specify the formatters by file type
+		formatters_by_ft = {
+			-- python = { "isort", "black", "ruff_format" },
+			python = { "ruff_format", "ruff_organize_imports" },
+			lua = { "stylua" },
+			markdown = { "prettier" },
+			bash = { "beautysh" },
+			html = { "prettier" },
+			sql = { "sqlfluff", "sql_formatter" },
+			yaml = { "prettier" },
+			json = { "prettier" },
+		},
 
-	config = function()
-		local conform = require("conform")
+		-- Specify format on save
+		format_on_save = {
+			timeout_ms = 5000,
+			lsp_fallback = true,
+		},
+	},
 
-		conform.setup({
-
-			-- Specify the formatters by file type
-			formatters_by_ft = {
-
-				-- python = function(bufnr)
-				-- 	if require("conform").get_formatter_info("ruff_format", bufnr).available then
-				-- 		return { "ruff_format", "black" }
-				-- 	else
-				-- 		return { "isort", "black" }
-				-- 	end
-				-- end,
-
-				python = { "isort", "black", "ruff_format" },
-				lua = { "stylua" },
-				markdown = { "prettier" },
-				bash = { "beautysh" },
-				html = { "prettier" },
-				sql = { "sqlfluff", "sql_formatter" },
-				yaml = { "prettier" },
-				json = { "prettier" },
-			},
-
-			-- Specify format on save
-			format_on_save = {
-				timeout_ms = 5000,
-				lsp_fallback = true,
-			},
-		})
-
-		vim.keymap.set({ "n", "v" }, "<leader>gf", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 5000,
-			})
-		end, { desc = "Format file or range (in visual mode)" })
-	end,
+	keys = {
+		{
+			"<leader>gf",
+			function()
+				require("conform").format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 5000,
+				})
+			end,
+			mode = { "n", "v" },
+			desc = "Format whole file or selection (in visual mode)",
+		},
+		{
+			"<leader>gF",
+			function()
+				local ft = vim.bo.filetype
+				local aggressive_formatters = {
+					python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+				}
+				require("conform").format({
+					formatters = aggressive_formatters[ft],
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 5000,
+				})
+			end,
+			mode = { "n", "v" },
+			desc = "Aggressively format whole file or selection (in visual mode)",
+		},
+	},
 }
