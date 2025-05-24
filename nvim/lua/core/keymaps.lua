@@ -10,7 +10,7 @@ local map = require("helpers.keys").map -- map signature (mode:str, lhs:str, rhs
 
 -- Function to wrap a text command in <cmd> ... <CR>
 local function cmd(command)
-  return table.concat({ "<cmd>", command, "<CR>" })
+	return table.concat({ "<cmd>", command, "<CR>" })
 end
 
 -- Vim commands --
@@ -101,74 +101,74 @@ map("n", "<A-0>", ":BufferLast<CR>", "Move to Last Buffer", { noremap = true })
 local harpoon = require("harpoon")
 harpoon:setup()
 map("n", "<leader>a", function()
-  harpoon:list():add()
+	harpoon:list():add()
 end, "Add mark to Harpoon list")
 
 map("n", "<C-x>u", function()
-  harpoon:list():select(1)
+	harpoon:list():select(1)
 end)
 map("n", "<C-x>i", function()
-  harpoon:list():select(2)
+	harpoon:list():select(2)
 end)
 map("n", "<C-x>o", function()
-  harpoon:list():select(3)
+	harpoon:list():select(3)
 end)
 map("n", "<C-x>p", function()
-  harpoon:list():select(4)
+	harpoon:list():select(4)
 end)
 
 -- Harpoon Telescope Setup --
 local conf = require("telescope.config").values
 
 local function toggle_telescope(harpoon_files)
-  local make_finder = function()
-    local paths = {}
+	local make_finder = function()
+		local paths = {}
 
-    for _, item in ipairs(harpoon_files.items) do
-      table.insert(paths, item.value)
-    end
+		for _, item in ipairs(harpoon_files.items) do
+			table.insert(paths, item.value)
+		end
 
-    return require("telescope.finders").new_table({
-      results = paths,
-    })
-  end
+		return require("telescope.finders").new_table({
+			results = paths,
+		})
+	end
 
-  require("telescope.pickers")
-      .new({}, {
-        prompt_title = "Harpoon",
-        finder = make_finder(),
-        previewer = conf.file_previewer({}),
-        sorter = conf.generic_sorter({}),
-        layout_strategy = "horizontal",
-        layout_config = {
-          preview_cutoff = 1,
-          width = function(_, max_columns, _)
-            return math.min(max_columns, 100)
-          end,
-          height = function(_, _, max_lines)
-            return math.min(max_lines, 40)
-          end,
-        },
-        attach_mappings = function(prompt_buffer_number, mymap)
-          -- The keymap you need
-          mymap("i", "<c-d>", function()
-            local state = require("telescope.actions.state")
-            local selected_entry = state.get_selected_entry()
-            local current_picker = state.get_current_picker(prompt_buffer_number)
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = make_finder(),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+			layout_strategy = "horizontal",
+			layout_config = {
+				preview_cutoff = 1,
+				width = function(_, max_columns, _)
+					return math.min(max_columns, 100)
+				end,
+				height = function(_, _, max_lines)
+					return math.min(max_lines, 40)
+				end,
+			},
+			attach_mappings = function(prompt_buffer_number, mymap)
+				-- The keymap you need
+				mymap("i", "<c-d>", function()
+					local state = require("telescope.actions.state")
+					local selected_entry = state.get_selected_entry()
+					local current_picker = state.get_current_picker(prompt_buffer_number)
 
-            local selected_index = selected_entry.index
-            -- This is the line you need to remove the entry
-            table.remove(harpoon_files.items, selected_index)
-            current_picker:refresh(make_finder(), { reset_prompt = true })
-          end)
+					local selected_index = selected_entry.index
+					-- This is the line you need to remove the entry
+					table.remove(harpoon_files.items, selected_index)
+					current_picker:refresh(make_finder(), { reset_prompt = true })
+				end)
 
-          return true
-        end,
-      })
-      :find()
+				return true
+			end,
+		})
+		:find()
 end
 map("n", "<C-e>", function()
-  toggle_telescope(harpoon:list())
+	toggle_telescope(harpoon:list())
 end, "Open Harpoon Window")
 
 -- Colorscheme (via Huez) --

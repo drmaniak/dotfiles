@@ -4,7 +4,13 @@ return {
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 	},
-	opts = {},
+	opts = {
+		winopts = {
+			preview = {
+				layout = "vertical",
+			},
+		},
+	},
 	keys = {
 		{
 			"<leader>F",
