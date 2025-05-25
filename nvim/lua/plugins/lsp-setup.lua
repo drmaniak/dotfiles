@@ -71,6 +71,9 @@ return {
 	-- 				header = "Diagnostics",
 	-- 				prefix = "",
 	-- 			},
+	-- 			virtual_text = {
+	-- 				severity = vim.diagnostic.severity.ERROR,
+	-- 			},
 	-- 		})
 	--
 	-- 		-- Loop through all servers and set up
