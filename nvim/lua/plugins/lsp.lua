@@ -188,7 +188,8 @@ return {
 		vim.diagnostic.config({
 			severity_sort = true,
 			float = { border = "rounded", source = "if_many", header = "Diagnostics" },
-			underline = { severity = vim.diagnostic.severity.ERROR },
+			-- underline also controls DiagnosticUnnecerrary, disabling prevents the greying out of unused parameters. HINT is the right level
+			underline = { severity = vim.diagnostic.severity.HINT },
 			signs = {
 				text = {
 					[vim.diagnostic.severity.ERROR] = "󰅚 ",

@@ -27,7 +27,7 @@ return {
 			desc = "[f]ind [f]iles (fzf-lua)",
 		},
 		{
-			"<leader>fn",
+			"<leader>fc",
 			function()
 				require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
 			end,

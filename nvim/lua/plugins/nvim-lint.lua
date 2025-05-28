@@ -9,9 +9,7 @@ return {
 
 		-- Specify the linters by file type
 		lint.linters_by_ft = {
-			-- python = { "ruff", "mypy", "pydocstyle" },
-			-- python = { "ruff", "mypy" },
-			python = { "mypy" }, -- Ruff is now handled as an LSP
+			python = { "mypy" },
 			markdown = { "markdownlint" },
 			html = { "htmlhint" },
 			yaml = { "actionlint" },
