@@ -9,10 +9,12 @@ return {
 			lua = { "stylua" },
 			markdown = { "prettier" },
 			bash = { "beautysh" },
+			zsh = { "beautysh" },
 			html = { "prettier" },
 			sql = { "sqlfluff", "sql_formatter" },
 			yaml = { "prettier" },
 			json = { "prettier" },
+			terraform = { "terraform" },
 		},
 
 		-- Specify format on save

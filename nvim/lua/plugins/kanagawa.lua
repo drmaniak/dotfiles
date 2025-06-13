@@ -32,6 +32,10 @@ return {
 				FloatBorder = { bg = "none" },
 				FloatTitle = { bg = "none" },
 
+				-- Damn Kanagawa doesn't auto-set StatusLine transparency even if transparent=true
+				StatusLine = { bg = "none" },
+				StatusLineNC = { bg = "none" },
+
 				-- Save an hlgroup with dark background and dimmed foreground
 				-- so that you can use it where your still want darker windows.
 				-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark

@@ -28,3 +28,5 @@ lazy.setup("plugins")
 local map = require("helpers.keys").map
 
 map("n", "<Leader>L", lazy.show, "Shows Lazy")
+
+vim.cmd.colorscheme("kanagawa")

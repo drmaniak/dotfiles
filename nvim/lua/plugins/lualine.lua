@@ -1,4 +1,5 @@
 --- stylua: ignore
+---
 
 return {
 	"nvim-lualine/lualine.nvim",
@@ -7,110 +8,124 @@ return {
 		"yavorski/lualine-macro-recording.nvim", -- display macro recording
 	},
 	config = function()
+		-- Kanagawa Wave theme colors
 		local colors = {
-			red = "#cdd6f4",
-			grey = "#181825",
-			black = "#1e1e2e",
-			white = "#313244",
-			light_green = "#6c7086",
-			orange = "#fab387",
-			green = "#a6e3a1",
-			blue = "#80A7EA",
+			sumiInk0 = "#16161D", -- Darkest background
+			sumiInk1 = "#1F1F28", -- Dark background
+			sumiInk2 = "#2A2A37", -- Lighter background
+			sumiInk3 = "#363646", -- Lightest background
+			sumiInk4 = "#54546D", -- Dark foreground
+			waveBlue1 = "#223249", -- Dark blue
+			waveBlue2 = "#2D4F67", -- Medium blue
+			oldWhite = "#C8C093", -- Light yellow/beige
+			fujiWhite = "#DCD7BA", -- Lighter yellow/beige
+			carpYellow = "#E6C384", -- Muted yellow
+			roninYellow = "#FF9E3B", -- Bright yellow
+			autumnYellow = "#DCA561", -- Autumn yellow
+			crystalBlue = "#7E9CD8", -- Blue
+			dragonBlue = "#7FB4CA", -- Light blue
+			springGreen = "#98BB6C", -- Green
+			autumnRed = "#C34043", -- Red
+			sakuraPink = "#D27E99", -- Pink
+			oniViolet = "#957FB8", -- Purple
 		}
 
 		local theme = {
 			normal = {
-				a = { fg = colors.black, bg = colors.blue },
-				b = { fg = colors.blue, bg = colors.white },
-				c = { fg = colors.white, bg = colors.black },
-				z = { fg = colors.white, bg = colors.black },
+				a = { fg = colors.sumiInk1, bg = colors.springGreen, gui = "bold" },
+				b = { fg = colors.springGreen, bg = colors.sumiInk3, gui = "bold" },
+				c = { fg = colors.oldWhite, bg = "NONE", gui = "bold" },
+				y = { fg = colors.sumiInk0, bg = colors.oniViolet, gui = "bold" },
+				z = { fg = colors.sumiInk0, bg = colors.fujiWhite, gui = "bold" },
 			},
-			insert = { a = { fg = colors.black, bg = colors.orange } },
-			visual = { a = { fg = colors.black, bg = colors.green } },
-			replace = { a = { fg = colors.black, bg = colors.green } },
+			insert = {
+				a = { fg = colors.sumiInk1, bg = colors.crystalBlue, gui = "bold" },
+				b = { fg = colors.dragonBlue, bg = colors.sumiInk3, gui = "bold" },
+				c = { fg = colors.oldWhite, bg = "NONE", gui = "bold" },
+				y = { fg = colors.sumiInk0, bg = colors.oniViolet, gui = "bold" },
+				z = { fg = colors.sumiInk0, bg = colors.fujiWhite, gui = "bold" },
+			},
+			visual = {
+				a = { fg = colors.sumiInk1, bg = colors.autumnYellow, gui = "bold" },
+				b = { fg = colors.roninYellow, bg = colors.sumiInk3, gui = "bold" },
+				c = { fg = colors.oldWhite, bg = "NONE", gui = "bold" },
+				y = { fg = colors.sumiInk0, bg = colors.oniViolet, gui = "bold" },
+				z = { fg = colors.sumiInk0, bg = colors.fujiWhite, gui = "bold" },
+			},
+			replace = {
+				a = { fg = colors.sumiInk1, bg = colors.autumnRed, gui = "bold" },
+				b = { fg = colors.sakuraPink, bg = colors.sumiInk3, gui = "bold" },
+				c = { fg = colors.oldWhite, bg = "NONE", gui = "bold" },
+				y = { fg = colors.sumiInk0, bg = colors.oniViolet, gui = "bold" },
+				z = { fg = colors.sumiInk0, bg = colors.fujiWhite, gui = "bold" },
+			},
+			inactive = {
+				a = { fg = colors.sumiInk3, bg = "NONE" },
+				b = { fg = colors.sumiInk3, bg = "NONE" },
+				c = { fg = colors.sumiInk3, bg = "NONE" },
+			},
 		}
+
+		-- local custom_separator = { left = "", right = "" }
+		local custom_separator = { left = " ", right = " " }
 
 		local vim_icons = {
 			function()
 				return " "
 			end,
-			separator = { left = "", right = "" },
-			color = { bg = "#313244", fg = "#80A7EA" },
+			separator = custom_separator,
+			-- color = { fg = "#80A7EA" },
 		}
 
 		local space = {
 			function()
 				return " "
 			end,
-			color = { bg = "NONE", fg = "NONE" },
-		}
-
-		local filename = {
-			"filename",
-			color = { bg = "#80A7EA", fg = "#242735" },
-			separator = { left = "", right = "" },
+			color = { bg = "NONE" },
 		}
 
 		local filepath = {
 			"filename",
 			path = 1,
-			color = { bg = "#80A7EA", fg = "#242735" },
-			separator = { left = "", right = "" },
+			-- color = { bg = "#80A7EA", fg = "#242735" },
+			separator = custom_separator,
 		}
 
 		local filetype = {
 			"filetype",
 			icon_only = true,
 			colored = true,
-			color = { bg = "#313244" },
-			separator = { left = "", right = "" },
+			color = {},
+			separator = custom_separator,
 		}
-
-		local filetype_tab = {
-			"filetype",
-			icon_only = true,
-			colored = true,
-			color = { bg = "#313244" },
-		}
-
-		-- local buffer = {
-		--     require 'tabline'.tabline_buffers,
-		--     separator = { left = "", right = "" },
-		-- }
-
-		-- local tabs = {
-		--     require 'tabline'.tabline_tabs,
-		--     separator = { left = "", right = "" },
-		-- }
 
 		local fileformat = {
 			"fileformat",
-			color = { bg = "#b4befe", fg = "#313244" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
 		}
 
 		local encoding = {
 			"encoding",
-			color = { bg = "#313244", fg = "#80A7EA" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
 		}
 
 		local branch = {
 			"branch",
-			color = { bg = "#a6e3a1", fg = "#313244" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
+
+			color = { bg = colors.sumiInk2 },
 		}
 
 		local diff = {
 			"diff",
-			color = { bg = "#313244", fg = "#313244" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
+			color = { bg = colors.sumiInk2 },
 		}
 
 		local macro_recording = {
 			"macro_recording",
-			color = { bg = "#b4befe", fg = "#313244" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
+			color = { bg = colors.sumiInk2, gui = "bold" },
 		}
 
 		local modes = {
@@ -118,8 +133,8 @@ return {
 			fmt = function(str)
 				return str:sub(1, 1)
 			end,
-			color = { bg = "#fab387		", fg = "#1e1e2e" },
-			separator = { left = "", right = "" },
+			-- color = { bg = "#fab387		", fg = "#1e1e2e" },
+			separator = custom_separator,
 		}
 
 		local navic = require("nvim-navic")
@@ -131,10 +146,8 @@ return {
 			cond = function()
 				return navic.is_available()
 			end,
-			-- color = { fg = "#c97a11", bg = "NONE", gui = "italic,bold" },
-			color = { fg = "#c97a11", bg = "#241a52", gui = "italic,bold" },
 			padding = { left = 2, right = 2 },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
 		}
 
 		local function getLspName()
@@ -196,24 +209,24 @@ return {
 
 		local dia = {
 			"diagnostics",
-			color = { bg = "#313244", fg = "#80A7EA" },
-			separator = { left = "", right = "" },
+			separator = custom_separator,
+			color = { bg = colors.sumiInk0 },
 		}
 
 		local lsp = {
 			function()
 				return getLspName()
 			end,
-			separator = { left = "", right = "" },
-			color = { bg = "#f38ba8", fg = "#1e1e2e" },
+			separator = custom_separator,
 		}
 
 		require("lualine").setup({
 
 			options = {
 				icons_enabled = true,
-				-- theme = theme,
-				theme = "catppuccin",
+				-- theme = "catppuccin",
+				theme = theme,
+				-- theme = "kanagawa",
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
@@ -235,15 +248,15 @@ return {
 					modes,
 					vim_icons,
 				},
-				lualine_b = { space },
-				lualine_c = {
-
+				lualine_b = {
 					space,
 					filepath,
-					filetype,
+				},
+				lualine_c = {
 					space,
 					branch,
 					diff,
+					space,
 					macro_recording,
 					"%S",
 				},
@@ -273,7 +286,7 @@ return {
 
 				lualine_a = { space },
 				lualine_b = { navic_component },
-				-- lualine_c = { navic_component },
+				lualine_c = {},
 			},
 			inactive_winbar = {},
 		})
