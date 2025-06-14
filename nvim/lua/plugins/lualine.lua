@@ -66,8 +66,57 @@ return {
 			},
 		}
 
-		-- local custom_separator = { left = "", right = "" }
-		local custom_separator = { left = " ", right = " " }
+		local separators = {
+			thin_line = "│", -- Vertical thin line
+			thick_line = "┃", -- Vertical thick line
+			dashed = "┆", -- Vertical dashed
+			dotted = "┊", -- Vertical dotted
+			double = "║", -- Double vertical line
+			shadow = "▏", -- Thin vertical with shadow
+			block = "█", -- Full block
+			arrow_right = "", -- Right-pointing solid arrow
+			arrow_left = "", -- Left-pointing solid arrow
+			slant_right = "", -- Right-pointing slant
+			slant_left = "", -- Left-pointing slant
+			curve_right = "", -- Right-pointing curve
+			curve_left = "", -- Left-pointing curve
+			round_right = "", -- Right-pointing rounded
+			round_left = "", -- Left-pointing rounded
+			triangle_right = "▶", -- Right-pointing triangle
+			triangle_left = "◀", -- Left-pointing triangle
+			chevron_right = "❯", -- Right chevron
+			chevron_left = "❮", -- Left chevron
+			diamond = "◆", -- Diamond
+			circle = "●", -- Circle
+			flower = "❀", -- Flower
+			nerd_right = "", -- nf-oct-chevron_right
+			nerd_left = "", -- nf-oct-chevron_left
+			nerd_arrow = "", -- nf-cod-arrow_right
+			nerd_caret = "", -- nf-cod-triangle_right
+			nerd_folded = "", -- nf-cod-chevron_right
+			nerd_pointer = "", -- nf-seti-pointer_right
+			curve_arrow_right = "", -- Combined curve + arrow
+			curve_arrow_left = "", -- Combined curve + arrow
+			fancy_left = "", -- Combined arrow + slant
+			double_arrow_right = "", -- Double arrows
+			double_arrow_left = "",
+
+			double_line_arrow_left = "║",
+			double_line_arrow_right = "║",
+
+			double_line_slant_left = "║",
+			double_line_slant_right = "║",
+
+			double_line_round_left = "║",
+			double_line_round_right = "║",
+
+			triple_line_round_left = "║║",
+			triple_line_slant_right = "║║",
+			space_arrow = " ", -- Arrow with space
+		}
+
+		local custom_separator =
+			{ left = separators.double_line_round_left, right = separators.double_line_slant_right }
 
 		local vim_icons = {
 			function()
@@ -270,6 +319,7 @@ return {
 				},
 				lualine_z = {
 					dia,
+					space,
 					lsp,
 				},
 			},
