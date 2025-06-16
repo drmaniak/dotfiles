@@ -12,6 +12,7 @@ return {
 		-- -- Useful status updates for LSP.
 		-- { "j-hui/fidget.nvim", opts = {} },
 	},
+
 	opts = {},
 	config = function()
 		-- Brief aside: **What is LSP?**
@@ -44,7 +45,7 @@ return {
 		--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
 		--    function will be executed to configure the current buffer
 		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+			group = vim.api.nvim_create_augroup("custom-lsp-attach", { clear = true }),
 			callback = function(event)
 				-- NOTE: Remember that Lua is a real programming language, and as such it is possible
 				-- to define small helper and utility functions so you don't have to repeat yourself.
@@ -125,7 +126,7 @@ return {
 						event.buf
 					)
 				then
-					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+					local highlight_augroup = vim.api.nvim_create_augroup("custom-lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
 						group = highlight_augroup,
@@ -139,10 +140,10 @@ return {
 					})
 
 					vim.api.nvim_create_autocmd("LspDetach", {
-						group = vim.api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+						group = vim.api.nvim_create_augroup("custom-lsp-detach", { clear = true }),
 						callback = function(event2)
 							vim.lsp.buf.clear_references()
-							vim.api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
+							vim.api.nvim_clear_autocmds({ group = "custom-lsp-highlight", buffer = event2.buf })
 						end,
 					})
 				end
@@ -174,13 +175,6 @@ return {
 				end
 			end,
 			desc = "LSP: Disable hover capability from Ruff",
-		})
-
-		-- LSP Signature Help Configs
-		vim.lsp.buf.signature_help({
-			config = {
-				border = "rounded",
-			},
 		})
 
 		-- Diagnostic Config
@@ -230,7 +224,15 @@ return {
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
-			bashls = {},
+
+			bashls = {
+				filetypes = { "sh", "bash", "zsh" },
+				settings = {
+					bashIde = {
+						globPattern = "*@(.sh|.inc|.bash|.command|.zsh|.zshrc)",
+					},
+				},
+			},
 			pyright = {
 				settings = {
 					pyright = {
@@ -243,6 +245,7 @@ return {
 			},
 			-- ruff = {},
 			marksman = {},
+			terraformls = {},
 			html = {},
 			yamlls = {},
 			dockerls = {},

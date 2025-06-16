@@ -32,11 +32,27 @@ return {
 
 			-- define the filetypes that you don't want completions for
 			enabled = function()
-				local filetype = vim.bo[0].filetype
-				-- disable for specified filetypes
-				if filetype == "Avante" or filetype == "oil" then
+				local bufnr = vim.api.nvim_get_current_buf()
+				local buftype = vim.bo[bufnr].buftype
+				local filetype = vim.bo[bufnr].filetype
+				local bufname = vim.api.nvim_buf_get_name(bufnr)
+
+				-- Only log for Avante buffers to avoid cluttering
+				-- if bufname:match("[Aa]vante") or filetype:lower():match("avante") then
+				-- 	print("Avante buffer detected:")
+				-- 	print("  Buffer number: " .. bufnr)
+				-- 	print("  Buffer type: " .. buftype)
+				-- 	print("  Filetype: " .. filetype)
+				-- 	print("  Buffer name: " .. bufname)
+				-- 	print("  Buffer variables: " .. vim.inspect(vim.b[bufnr]))
+				-- 	return false
+				-- end
+
+				-- Your existing checks
+				if filetype == "AvanteInput" or filetype == "oil" or buftype == "nofile" then
 					return false
 				end
+
 				return true
 			end,
 
@@ -52,10 +68,10 @@ return {
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
+
 			keymap = {
 				preset = "default",
-				["<contextSupport"] = { "accept", "fallback" },
-				["<C-Z>"] = { "accept", "fallback" },
+				["<CR>"] = { "accept", "fallback" },
 			},
 
 			appearance = {
@@ -63,58 +79,52 @@ return {
 				-- Adjusts spacing to ensure icons are aligned
 				use_nvim_cmp_as_default = true,
 				nerd_font_variant = "mono",
-				border = "rounded",
 				-- max_kind_width = 16,
-				padding = { left = 5, right = 5 },
 			},
-
-			-- cmdline = {
-			-- 	enabled = true,
-			-- },
 
 			signature = {
 				-- Boolean value to enable/disabel signature help from Blink-cmp
-				enabled = false,
+				enabled = true,
 
 				trigger = {
 					enabled = true,
 					show_on_trigger_character = true,
 					show_on_keyword = false,
 					show_on_insert = false,
-					show_on_insert_trigger_character = true,
+					-- show_on_insert_trigger_character = true,
 				},
 				window = {
 					border = "rounded",
-					winblend = 40,
+					winblend = 0,
 					max_width = 100,
 					max_height = 20,
 					scrollbar = false,
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
 				},
 			},
 
 			cmdline = {
-				module = "blink.cmp.sources.cmdline",
-				-- Disable shell commands on windows, since they cause neovim to hang
 				enabled = true,
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = {
 				menu = {
-					max_width = 50, -- wrap long items
-					max_items = 30, -- number of suggestions shown
+					-- max_width = 20, -- wrap long items
+					-- max_items = 30, -- number of suggestions shown
 					enabled = true,
-					winblend = 40,
+					winblend = 0,
 					border = "rounded",
 					scrolloff = 5,
-					scrollbar = true,
+					scrollbar = false,
+					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:BlinkCmpKindConstant,Search:None",
 				},
 				documentation = {
 					auto_show = true,
 					window = {
 						border = "rounded",
-						winblend = 50,
-						min_width = 50,
+						winblend = 0,
+						min_width = 70,
 						max_width = 100,
 						max_height = 50,
 						scrollbar = false,
@@ -126,13 +136,18 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "emoji", "sql" },
+				default = { "lazydev", "lsp", "path", "snippets", "buffer", "emoji", "sql" },
 				providers = {
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						score_offset = 100,
+					},
 					lsp = {
 						name = "lsp",
 						enabled = true,
 						module = "blink.cmp.sources.lsp",
-						kind = "LSP",
+						-- kind = "LSP",
 						min_keyword_length = 2,
 						score_offset = 90,
 					},
