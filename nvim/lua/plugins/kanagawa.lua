@@ -36,6 +36,10 @@ return {
 				StatusLine = { bg = "none" },
 				StatusLineNC = { bg = "none" },
 
+				BufferTabpageFill = { bg = "none" },
+				BufferOffset = { bg = "none" },
+				BufferTabpages = { bg = "none" },
+
 				-- Save an hlgroup with dark background and dimmed foreground
 				-- so that you can use it where your still want darker windows.
 				-- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
