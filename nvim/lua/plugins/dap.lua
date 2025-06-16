@@ -187,5 +187,11 @@ return {
 			mode = { "n" },
 			desc = "DAP: Terminate Debugging",
 		},
+		{
+			"<leader>fb",
+			function()
+				require("fzf-lua").dap_breakpoints()
+			end,
+		},
 	},
 }
