@@ -17,6 +17,13 @@ return {
 			-- sql = { "sqlfluff" },
 		}
 
+		lint.linters.markdownlint.args = {
+			"--fix",
+			"--disable",
+			"--MD013",
+			"--",
+		}
+
 		-- Autocommands for linting
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
