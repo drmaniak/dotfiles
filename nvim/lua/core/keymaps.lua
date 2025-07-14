@@ -14,7 +14,7 @@ local function cmd(command)
 end
 
 -- Vim commands --
-map("i", "kj", "<ESC>", "", { noremap = true })
+-- map("i", "kj", "<ESC>", "", { noremap = true })
 map("n", "<Esc>", cmd("nohlsearch"), "Clear highlights after searching")
 
 -- Key cursor centered when scrolling
