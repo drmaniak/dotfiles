@@ -7,7 +7,12 @@ return {
 	opts = {
 		winopts = {
 			preview = {
-				layout = "vertical",
+				layout = "horizontal",
+			},
+		},
+		keymap = {
+			fzf = {
+				["ctrl-q"] = "select-all+accept",
 			},
 		},
 	},

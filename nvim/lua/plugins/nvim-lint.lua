@@ -9,11 +9,12 @@ return {
 
 		-- Specify the linters by file type
 		lint.linters_by_ft = {
-			-- python = { "mypy" },
+			python = { "mypy" },
 			markdown = { "markdownlint" },
 			html = { "htmlhint" },
 			yaml = { "actionlint" },
 			terraform = { "tflint" },
+			typescript = { "eslint" },
 			-- sql = { "sqlfluff" },
 		}
 
