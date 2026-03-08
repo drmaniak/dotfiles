@@ -14,6 +14,7 @@ return {
 			html = { "htmlhint" },
 			yaml = { "actionlint" },
 			terraform = { "tflint" },
+			lua = { "selene" },
 			typescript = { "eslint" },
 			-- sql = { "sqlfluff" },
 		}
