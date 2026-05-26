@@ -54,17 +54,6 @@ map("n", "<leader>T", ":Telescope<CR>", "Open Telescope Main")
 map("n", "<leader>ft", cmd("TodoTelescope"), "Telescope - TODO list")
 -- map("n", "<leader>fk", telescope_builtin.keymaps, "Telescope - Keymaps")
 
--- Treesitter Textobjects Movement --
-local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
--- map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move_next)
--- map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_previous)
-map({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-map({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-map({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f_expr, "Repeat f search", { expr = true })
-map({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F_expr, "Repeat F search", { expr = true })
-map({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, "Repeat t search", { expr = true })
-map({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, "Repeat T search", { expr = true })
-
 -- Oil --
 map("n", "<leader>o", cmd("Oil --float"))
 
