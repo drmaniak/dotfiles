@@ -9,7 +9,7 @@ return {
 
 		-- Specify the linters by file type
 		lint.linters_by_ft = {
-			python = { "mypy" },
+			python = { "ruff", "mypy" },
 			markdown = { "markdownlint" },
 			html = { "htmlhint" },
 			yaml = { "actionlint" },
