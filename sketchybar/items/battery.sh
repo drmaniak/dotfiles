@@ -2,17 +2,15 @@
 
 battery=(
   script="$PLUGIN_DIR/battery.sh"
-  click_script="$PLUGIN_DIR/close_popups.sh"
-  icon.font="$FONT:Regular:15.0"
-  background.color="$PURE_BLACK"
-  # icon.font.size=14
-  padding_right=0
+  icon.font="$FONT:Regular:19.0"
+  padding_right=3
   padding_left=0
+  label.drawing=off
   update_freq=120
   updates=on
-  background.drawing=off
-  script="$PLUGIN_DIR/battery.sh"
 )
 sketchybar --add item battery right \
-           --set battery "${battery[@]}" \
+           --set battery "${battery[@]}"\
+              icon.font.size=15 update_freq=120 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery power_source_change system_woke
+

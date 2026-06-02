@@ -1,21 +1,16 @@
 #!/bin/bash
 
+# Wi-Fi item (forteleaf referenced items/wifi.sh but never shipped it).
+# SSID is resolved in plugins/wifi.sh using a method that works on modern macOS.
+
 wifi=(
-    script="$PLUGIN_DIR/wifi.sh"
-    click_script="$PLUGIN_DIR/close_popups.sh"
-    icon=$WIFI_CONNECTED
-    label.drawing=off
-    background.color="$PURE_BLACK"
-    icon.font.size="$FONT:Regular:17.0"
-    icon.align=center
-    icon.padding_left=8
-    icon.padding_right=8
-    padding_left=0
-    padding_right=0
-    background.drawing=off
-    icon.color=0xff58d1fc
-    update_freq=10
+  icon="$WIFI_CONNECTED"
+  icon.color=0xff58d1fc
+  label.drawing=off
+  update_freq=10
+  script="$PLUGIN_DIR/wifi.sh"
 )
 
 sketchybar --add item wifi right \
-           --set wifi "${wifi[@]}"
+           --set wifi "${wifi[@]}" \
+           --subscribe wifi wifi_change

@@ -1,14 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
 front_app=(
-     background.color="$PURE_BLACK"
-     icon.drawing=off
-     label.padding_left=10
-     label.padding=10
-     click_script="$PLUGIN_DIR/close_popups.sh"
-     script="$PLUGIN_DIR/front_app.sh"
-    )
+  label.font="$FONT:Black:12.0"
+  icon.background.drawing=on
+  display=active
+  script="$PLUGIN_DIR/front_app.sh"
+  click_script="open -a 'Mission Control'"
+)
+sketchybar --add item front_app left         \
+           --set front_app "${front_app[@]}" \
+           --subscribe front_app front_app_switched
 
-sketchybar --add item front_app left \
-    --set front_app "${front_app[@]}" \
-    --subscribe front_app front_app_switched
