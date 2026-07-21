@@ -34,11 +34,11 @@ map("v", "P", '"_dP', "Paste over currently selected text without yanking it")
 -- Plugin controls --
 ---------------------
 
--- Navigate vim panes better (TMUX) --
-map("n", "<C-h>", ":wincmd h<CR>", "Move window left")
-map("n", "<C-j>", ":wincmd j<CR>", "Move window down")
-map("n", "<C-k>", ":wincmd k<CR>", "Move window up")
-map("n", "<C-l>", ":wincmd l<CR>", "Move window right")
+-- Navigate vim panes + herdr/tmux panes seamlessly.
+-- <C-h/j/k/l> are owned by vim-herdr-navigation (loaded via the
+-- christoomey/vim-tmux-navigator spec). Do NOT map them here: core.keymaps
+-- loads after core.lazy, so any mapping here would clobber the plugin's
+-- edge-crossing maps and break navigation out to herdr/tmux panes.
 
 -- Telescope --
 local telescope_builtin = require("telescope.builtin")
