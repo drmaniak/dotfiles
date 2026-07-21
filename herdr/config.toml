@@ -37,6 +37,15 @@ split_horizontal = "prefix+minus"   # stacked, matches tmux `-`
 split_vertical   = "prefix+|"       # side-by-side, matches tmux `|`
                                     # if your terminal doesn't pass shift+\, use "prefix+backslash" or "prefix+v"
 
+# workspace navigation
+next_workspace = "prefix+ctrl+n"
+previous_workspace = "prefix+ctrl+p"
+switch_workspace = "prefix+ctrl+1..9"
+
+# Agent navigation
+next_agent = "prefix+alt+n"
+previous_agent = "prefix+alt+p"
+switch_agent = "prefix+alt+1..9"
 # ---------------------------------------------------------------------------
 # vim-tmux-navigator, ported to herdr (plugin: paulbkim-dev/vim-herdr-navigation)
 # Seamless Ctrl+h/j/k/l across herdr panes and Vim/Neovim splits.
@@ -73,3 +82,12 @@ key = "prefix+ctrl+l"
 type = "shell"
 command = 'herdr pane send-keys "$HERDR_ACTIVE_PANE_ID" ctrl+l'
 description = "clear screen (send ctrl+l to pane)"
+
+# Run lazygit in popup window
+[[keys.command]]
+key = "prefix+alt+g"
+type = "popup"
+command = "lazygit"
+description = "run lazygit"
+width = "80%"
+height = "80%"
