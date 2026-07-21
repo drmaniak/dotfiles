@@ -233,8 +233,18 @@ return {
 					},
 				},
 			},
+			pyright = {
+				settings = {
+					pyright = {
+						disableOrganizeImports = false,
+					},
+				},
+				python = {
+					analysis = { "*" },
+				},
+			},
 			ruff = {},
-			pyrefly = {},
+			postgres_lsp = {},
 			marksman = {},
 			terraformls = {},
 			eslint = {},
