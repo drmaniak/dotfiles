@@ -1,11 +1,15 @@
 return {
 	"petertriho/nvim-scrollbar",
-	config = function()
-		require("scrollbar").setup({
-			handle = {
+	branch = "refactor/v2",
+	opts = {
+		scrollbar = {
+			visibility = "active",
+			thumb = {
 				blend = 75,
-				color = "#a6e3a1",
+				highlight = {
+					bg = "#a6e3a1",
+				},
 			},
-		})
-	end,
+		},
+	},
 }
